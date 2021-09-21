@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Departamento } from 'src/app/_model/Departamento';
+import { DepartamentosService } from 'src/app/_service/departamentos.service';
 
 @Component({
   selector: 'app-departamentos',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartamentosComponent implements OnInit {
 
-  constructor() { }
+  ELEMENT_DATA: Departamento[] = [];
+  displayedColumns: string[] = ['idDepartamento', 'nombre', 'getdetails'];
+  dataSource = new MatTableDataSource<Departamento>(this.ELEMENT_DATA);
+
+  constructor(private service: DepartamentosService) { }
 
   ngOnInit(): void {
+    this.getAllDepartamentos();
+  }
+
+  public getAllDepartamentos(){
+    let resp = this.service.departamentosreport();
+    resp.subscribe(report => this.dataSource.data = report as Departamento[]);
+  }
+
+  // getRecordCiudades
+  // tslint:disable-next-line: typedef
+  getRecordCiudades(){
+    alert('Ok');
   }
 
 }

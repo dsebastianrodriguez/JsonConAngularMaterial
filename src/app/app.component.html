@@ -1,3 +1,4 @@
+<mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
 <div class="example-container">
   <mat-toolbar color="primary" class="example-toolbar" > 
       
@@ -5,7 +6,7 @@
       <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>   
-      <h1 class="example-app-name">ENVIOS UDEC</h1>
+      <h1 class="example-app-name">FERRA WEB</h1>
 
 
       <span class="example-spacer"></span>
@@ -52,7 +53,7 @@
         <mat-divider></mat-divider>  
       
         <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamentos']">
-          <mat-icon>edit</mat-icon>
+          <mat-icon>double_arrow</mat-icon>
           <span>Departamentos</span>
         </button>
         <mat-divider></mat-divider>  
