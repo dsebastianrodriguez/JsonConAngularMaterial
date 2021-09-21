@@ -11,7 +11,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { DepartamentosComponent } from './pages/departamentos/departamentos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { CiudadComponent } from './pages/ciudad/ciudad.component';
 const appRoutes: Routes = [
   {path: 'buscar', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
@@ -19,13 +19,15 @@ const appRoutes: Routes = [
   {path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
+
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
     BuscarComponent,
     EditarComponent,
-    DepartamentosComponent
+    DepartamentosComponent,
+    CiudadComponent
   ],
   imports: [
     BrowserModule,

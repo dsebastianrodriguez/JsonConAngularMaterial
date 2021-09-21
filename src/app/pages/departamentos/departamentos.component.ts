@@ -24,11 +24,4 @@ export class DepartamentosComponent implements OnInit {
     let resp = this.service.departamentosreport();
     resp.subscribe(report => this.dataSource.data = report as Departamento[]);
   }
-
-  // getRecordCiudades
-  // tslint:disable-next-line: typedef
-  getRecordCiudades(){
-    alert('Ok');
-  }
-
 }

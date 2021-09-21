@@ -1,4 +1,3 @@
-<mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
 <div class="example-container">
   <mat-toolbar color="primary" class="example-toolbar" > 
       
@@ -30,29 +29,30 @@
   </mat-toolbar>
   
   <mat-drawer-container class="example-sidenav-content" autosize>
+    <mat-progress-bar *ngIf="progressbar" mode="buffer"></mat-progress-bar>
     <mat-drawer #drawer style="width: 200px" mode="side">
 
         <img src="assets/ferrari_logo.png" width="128" style="margin-left: 20px;" />
   
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/buscar']">
+        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/buscar']">
             <mat-icon>search</mat-icon>
             <span>Buscar</span>
         </button>
         <mat-divider></mat-divider>  
         
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/registro']">
+        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/registro']">
           <mat-icon>manage accounts</mat-icon>
           <span>Registro</span>
         </button>
         <mat-divider></mat-divider>  
 
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/editar']">
+        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/editar']">
           <mat-icon>edit</mat-icon>
           <span>Editar</span>
         </button>
         <mat-divider></mat-divider>  
       
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamentos']">
+        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/departamentos']">
           <mat-icon>double_arrow</mat-icon>
           <span>Departamentos</span>
         </button>

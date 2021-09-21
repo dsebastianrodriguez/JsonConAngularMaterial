@@ -10,4 +10,7 @@ export class DepartamentosService {
   public departamentosreport(){
     return this.http.get('http://143.244.150.210/movitapp-back/departamentos/listar');
   }
+  public listarCiudad(){
+    return this.http.get('http://143.244.150.210/movitapp-back/departamentos/ciudad/listarPorDepartamnto/25');
+  }
 }
