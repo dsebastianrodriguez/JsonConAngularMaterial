@@ -5,7 +5,7 @@
       <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>   
-      <h1 class="example-app-name">FERRA WEB</h1>
+      <h1 class="example-app-name">FERRASOFT</h1>
 
 
       <span class="example-spacer"></span>
@@ -55,6 +55,12 @@
         <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/departamentos']">
           <mat-icon>double_arrow</mat-icon>
           <span>Departamentos</span>
+        </button>
+        <mat-divider></mat-divider>  
+
+        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/vehiculo']">
+          <mat-icon>trending_flat</mat-icon>
+          <span>Vehiculos</span>
         </button>
         <mat-divider></mat-divider>  
     </mat-drawer>

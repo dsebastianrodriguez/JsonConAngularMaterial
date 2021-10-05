@@ -21,7 +21,7 @@ export class DepartamentosComponent implements OnInit {
   }
 
   public getAllDepartamentos(){
-    let resp = this.service.departamentosreport();
+    let resp = this.service.departamentosListar();
     resp.subscribe(report => this.dataSource.data = report as Departamento[]);
   }
 }

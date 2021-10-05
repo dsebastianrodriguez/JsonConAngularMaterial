@@ -7,10 +7,10 @@ export class DepartamentosService {
 
   constructor(private http: HttpClient) { }
 
-  public departamentosreport(){
+  public departamentosListar(){
     return this.http.get('http://143.244.150.210/movitapp-back/departamentos/listar');
   }
   public listarCiudad(){
-    return this.http.get('http://143.244.150.210/movitapp-back/departamentos/ciudad/listarPorDepartamnto/25');
+    return this.http.get('http://143.244.150.210/movitapp-back/departamentos/ciudad/listarPorDepartamnto/15');
   }
 }

@@ -12,6 +12,7 @@ import { DepartamentosComponent } from './pages/departamentos/departamentos.comp
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CiudadComponent } from './pages/ciudad/ciudad.component';
+import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 const appRoutes: Routes = [
   {path: 'buscar', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     BuscarComponent,
     EditarComponent,
     DepartamentosComponent,
-    CiudadComponent
+    CiudadComponent,
+    VehiculoComponent
   ],
   imports: [
     BrowserModule,
