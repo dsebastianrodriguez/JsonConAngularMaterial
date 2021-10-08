@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Departamento } from 'src/app/_model/Departamento';
 import { DepartamentosService } from 'src/app/_service/departamentos.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-departamentos',
@@ -10,18 +13,29 @@ import { DepartamentosService } from 'src/app/_service/departamentos.service';
 })
 export class DepartamentosComponent implements OnInit {
 
-  ELEMENT_DATA: Departamento[] = [];
-  displayedColumns: string[] = ['idDepartamento', 'nombre', 'getdetails'];
-  dataSource = new MatTableDataSource<Departamento>(this.ELEMENT_DATA);
+  displayedColumns: string[] = ['idDepartamento', 'nombre', 'ver'];
+  dataSource = new MatTableDataSource<Departamento>();
+  
+  @ViewChild('DepartmentPaginator') paginator: MatPaginator;
 
-  constructor(private service: DepartamentosService) { }
+  //para el ordenamiento
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private DepartamentosService: DepartamentosService,
+              public route: ActivatedRoute) { }
+
 
   ngOnInit(): void {
-    this.getAllDepartamentos();
+    this.DepartamentosService.listar().subscribe(data =>{
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  public getAllDepartamentos(){
-    let resp = this.service.departamentosListar();
-    resp.subscribe(report => this.dataSource.data = report as Departamento[]);
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
+
 }

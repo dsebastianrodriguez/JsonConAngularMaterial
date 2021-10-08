@@ -9,9 +9,9 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { EditarComponent } from './pages/editar/editar.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { DepartamentosComponent } from './pages/departamentos/departamentos.component';
+import { CiudadComponent } from './pages/departamentos/ciudad/ciudad.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { CiudadComponent } from './pages/ciudad/ciudad.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 const appRoutes: Routes = [
   {path: 'buscar', component: BuscarComponent},
