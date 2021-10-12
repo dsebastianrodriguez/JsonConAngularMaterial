@@ -12,7 +12,7 @@ import {VehiculoService} from './../../_service/vehiculo.service';
 })
 export class VehiculoComponent implements OnInit {
 
-  displayedColumns: string [] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad'];
+  displayedColumns: string [] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad','ver'];
   dataSource = new MatTableDataSource<Vehiculo>();
   @ViewChild(MatSort) sort: MatSort;
 
@@ -28,9 +28,7 @@ export class VehiculoComponent implements OnInit {
   }
 
   cambiarPagina(e: any){
-    //indice de pagina
     this.pageIndex = e.pageIndex;
-    //tamaño de paginado
     this.pageSize = e.pageSize;
     this.listarPaginado();
   }

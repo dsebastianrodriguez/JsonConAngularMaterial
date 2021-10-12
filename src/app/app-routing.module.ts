@@ -6,6 +6,7 @@ import { EditarComponent } from './pages/editar/editar.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { CiudadComponent } from './pages/departamentos/ciudad/ciudad.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
+import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agregar-vehiculo.component';
 const routes: Routes = [
   {path: 'buscar', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
@@ -14,10 +15,13 @@ const routes: Routes = [
       {path:  'ciudad/:idDep', component: CiudadComponent}
     ]
   },
-  {path: 'vehiculo', component: VehiculoComponent}
-  //{ path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404
+  {path: 'vehiculo', component: VehiculoComponent, children: [
+    {path: 'agregarvehiculo', component: AgregarVehiculoComponent },
+    {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent}
+  ]
+  },
+  {path: '**', component: BuscarComponent}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule} from './material/material.module';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { EditarComponent } from './pages/editar/editar.component';
@@ -13,6 +14,8 @@ import { CiudadComponent } from './pages/departamentos/ciudad/ciudad.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
+import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agregar-vehiculo.component';
+
 const appRoutes: Routes = [
   {path: 'buscar', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
@@ -29,7 +32,8 @@ const appRoutes: Routes = [
     EditarComponent,
     DepartamentosComponent,
     CiudadComponent,
-    VehiculoComponent
+    VehiculoComponent,
+    AgregarVehiculoComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ const appRoutes: Routes = [
     MaterialModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

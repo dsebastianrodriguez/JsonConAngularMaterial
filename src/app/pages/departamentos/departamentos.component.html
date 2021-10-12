@@ -1,4 +1,13 @@
 <div [hidden]="route.children.length !== 0">
+  <mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filtrar"
+      #input
+    />
+  </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
       <!--- Note that these columns can be defined in any order.
