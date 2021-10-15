@@ -11,18 +11,12 @@ import { EditarComponent } from './pages/editar/editar.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { DepartamentosComponent } from './pages/departamentos/departamentos.component';
 import { CiudadComponent } from './pages/departamentos/ciudad/ciudad.component';
-import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agregar-vehiculo.component';
-
-const appRoutes: Routes = [
-  {path: 'buscar', component: BuscarComponent},
-  {path: 'editar', component: EditarComponent},
-  {path: 'registro', component: RegistroComponent},
-  {path: '**', redirectTo: '/', pathMatch: 'full' }
-];
-
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ErrorInterceptorService } from './_share/error-interceptor.service';
+import { NotOkComponent } from './pages/not-ok/not-ok.component';
 
 @NgModule({
   declarations: [
@@ -33,18 +27,27 @@ const appRoutes: Routes = [
     DepartamentosComponent,
     CiudadComponent,
     VehiculoComponent,
-    AgregarVehiculoComponent
+    AgregarVehiculoComponent,
+    NotFoundComponent,
+    NotOkComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:  HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi:    true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

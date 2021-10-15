@@ -7,7 +7,10 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { CiudadComponent } from './pages/departamentos/ciudad/ciudad.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agregar-vehiculo.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotOkComponent } from './pages/not-ok/not-ok.component';
 const routes: Routes = [
+  {path: '', component: DepartamentosComponent},
   {path: 'buscar', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
   {path: 'registro', component: RegistroComponent},
@@ -20,7 +23,8 @@ const routes: Routes = [
     {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent}
   ]
   },
-  {path: '**', component: BuscarComponent}
+  {path: 'error', component: NotOkComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

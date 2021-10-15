@@ -2,12 +2,7 @@
 
   <mat-form-field>
     <mat-label>Filtro</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event.target.value)"
-      placeholder="Filtrar"
-      #input
-    />
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar" #input/>
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -53,23 +48,10 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <!-- paginador -->
-  <mat-paginator
-    class="paginador"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="[5, 10, 15, 100]"
-    [length]="cantidad"
-    (page)="cambiarPagina($event)"
-  ></mat-paginator>
-
+  <mat-paginator class="paginador" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cantidad" (page)="cambiarPagina($event)"></mat-paginator>
   <br>
 
-  <button
-    mat-fab
-    color="primary"
-    style="float: right"
-    [routerLink]="['agregarvehiculo']"
-  >
+  <button mat-fab color="primary" style="float: right" [routerLink]="['agregarvehiculo']">
     <mat-icon>add_circle_outline</mat-icon>
   </button>
 
