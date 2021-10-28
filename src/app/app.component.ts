@@ -1,20 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BarraDeProgresoService } from './_service/barra-de-progreso.service';
+import { LoginService } from './_service/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  isExpanded = false;
+export class AppComponent implements OnInit{
 
-  progressbar = false;
-  // tslint:disable-next-line: typedef
-  loadData() {
-    this.progressbar = true;
-    setTimeout(() => {
-      this.progressbar = false;
-    }, 920);
+  public flagProgressBar: boolean = true;
+
+  isLoggedIn$: Observable<boolean>;
+
+  constructor(
+    private barraDeProgresoService: BarraDeProgresoService,
+    public route: ActivatedRoute,
+    public logService: LoginService
+  ){}
+
+  ngOnInit(): void {
+    this.barraDeProgresoService.progressBarReactiva.subscribe(data => {
+      this.flagProgressBar = !this.flagProgressBar;
+      this.isLoggedIn$ = this.logService.isLoggedIn;
+    });
   }
-  title = 'jsonAngularMaterial';
+
+
+  onLogout() {
+    this.logService.cerrarSesion();
+  }
+
 }

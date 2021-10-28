@@ -5,6 +5,7 @@ import { DepartamentosService } from 'src/app/_service/departamentos.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 
 @Component({
   selector: 'app-departamentos',
@@ -22,14 +23,17 @@ export class DepartamentosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private DepartamentosService: DepartamentosService,
-              public route: ActivatedRoute) { }
+              public route: ActivatedRoute,
+              private barraDeProgresoService: BarraDeProgresoService) { }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.barraDeProgresoService.progressBarReactiva.next(false);
     this.DepartamentosService.listar().subscribe(data =>{
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.barraDeProgresoService.progressBarReactiva.next(true);
     });
   }
 

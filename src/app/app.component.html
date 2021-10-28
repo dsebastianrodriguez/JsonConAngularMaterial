@@ -1,68 +1,77 @@
 <div class="example-container">
-  <mat-toolbar color="primary" class="example-toolbar" > 
+  <!--[hidden]="route.children.length !== 0 " -->
+  <div>
+    <mat-toolbar color="primary" class="example-toolbar">   
       
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
-      <mat-icon *ngIf="drawer.opened">close</mat-icon>
-    </button>   
+      
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+        <mat-icon *ngIf="drawer.opened">close</mat-icon>
+      </button>   
       <h1 class="example-app-name">APLICATIVO WEB DE ASIGNACION DE AUTOS</h1>
-
 
       <span class="example-spacer"></span>
 
       <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/perfil']">
+          <mat-icon>account_box</mat-icon>
+          <span>Mi Perfil</span>
         </button>
 
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/perfil']">
-                <mat-icon>account_box</mat-icon>
-                <span>Mi Perfil</span>
-            </button>
-            <button mat-menu-item >
-                <mat-icon>exit_to_app</mat-icon>
-                <span>Cerrar Sesión</span>
-            </button>
-        </mat-menu>
-  
-      
-  </mat-toolbar>
+        <button mat-menu-item (click)="onLogout()" *ngIf="isLoggedIn$ | async">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
+
+    </mat-toolbar>
+  </div>
+
+    
+
+  <div [hidden]="flagProgressBar"> 
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar> 
+  </div>
   
   <mat-drawer-container class="example-sidenav-content" autosize>
-    <mat-progress-bar *ngIf="progressbar" mode="buffer"></mat-progress-bar>
     <mat-drawer #drawer style="width: 200px" mode="side">
 
         <img src="assets/ferrari_logo.png" width="128" style="margin-left: 20px;" />
   
-        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/buscar']">
+        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/buscar']">
             <mat-icon>search</mat-icon>
             <span>Buscar</span>
         </button>
         <mat-divider></mat-divider>  
         
-        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/registro']">
+        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/registro']">
           <mat-icon>manage accounts</mat-icon>
           <span>Registro</span>
         </button>
         <mat-divider></mat-divider>  
 
-        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/editar']">
+        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/editar']">
           <mat-icon>edit</mat-icon>
           <span>Editar</span>
         </button>
         <mat-divider></mat-divider>  
       
-        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/departamentos']">
+        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamentos']">
           <mat-icon>room</mat-icon>
           <span>Departamentos</span>
         </button>
         <mat-divider></mat-divider>  
 
-        <button mat-menu-item (click)="drawer.toggle()" (click)="loadData()" style="cursor: pointer" [routerLink]="['/vehiculo']">
+        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/vehiculo']">
           <mat-icon>directions_cars</mat-icon>
           <span>Vehiculos</span>
         </button>
         <mat-divider></mat-divider>  
+        
     </mat-drawer>
 
       <div class="example-sidenav-content">
@@ -70,5 +79,4 @@
       </div>
 
     </mat-drawer-container>
-
 </div>

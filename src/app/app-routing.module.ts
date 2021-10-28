@@ -9,8 +9,11 @@ import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agregar-vehiculo.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
+import { LoginComponent } from './pages/login/login.component';
+
 const routes: Routes = [
-  {path: '', component: DepartamentosComponent},
+  {path: '', component: LoginComponent},
   {path: 'buscar', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
   {path: 'registro', component: RegistroComponent},
@@ -24,6 +27,8 @@ const routes: Routes = [
   ]
   },
   {path: 'error', component: NotOkComponent},
+  {path: 'nopermiso', component: NotAllowedComponent},
+  {path: 'login', component: LoginComponent},
   {path: '**', component: NotFoundComponent}
 ];
 @NgModule({

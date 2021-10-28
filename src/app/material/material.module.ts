@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [],
@@ -35,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     MatSortModule,
     MatSelectModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ], exports: [
     MatButtonModule,
     MatIconModule,
@@ -51,7 +53,8 @@ import { FormsModule } from '@angular/forms';
     MatSortModule,
     MatSelectModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ]
 })
 export class MaterialModule { }
