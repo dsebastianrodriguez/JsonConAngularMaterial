@@ -2,12 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  public toolbarReactiva = new Subject<boolean>();
+
+  public administradorReactivo = new Subject<boolean>();
+
+  public usuarioReactivo = new Subject<boolean>();
 
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -25,6 +31,8 @@ export class LoginService {
   public login(usuario: string, password: string) {
     const body = `grant_type=password&username=${encodeURIComponent(usuario)}&password=${encodeURIComponent(password)}`;
     this.loggedIn.next(true);
+    this.administradorReactivo.next(true);
+    this.usuarioReactivo.next(true);
     return this.http.post<any>(`${this.url}`, body, {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').
         set('Authorization', 'Basic ' + btoa(`${environment.TOKEN_AUTH_USERNAME}:${environment.TOKEN_AUTH_PASSWORD}`))
@@ -35,8 +43,11 @@ export class LoginService {
     const tk = sessionStorage.getItem(environment.TOKEN);
     this.http.get(`${environment.HOST}/cerrarSesion/anular/${tk}`).subscribe(data => {
       sessionStorage.clear();
-      this.loggedIn.next(false);
+      this.administradorReactivo.next(true);
+      this.usuarioReactivo.next(true);
       this.router.navigate(['login']);
+      this.loggedIn.next(false);
+      this.toolbarReactiva.next(true);
     });
   }
 

@@ -11,6 +11,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { LoginComponent } from './pages/login/login.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { GuardianService } from './_share/guardian.service';
+import { ConductorComponent } from './pages/conductor/conductor.component';
+import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -18,17 +22,24 @@ const routes: Routes = [
   {path: 'editar', component: EditarComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'departamentos', component: DepartamentosComponent, children :[
-      {path:  'ciudad/:idDep', component: CiudadComponent}
-    ]
+      {path:  'ciudad/:idDep', component: CiudadComponent, canActivate: [GuardianService]}
+    ], canActivate: [GuardianService]
   },
   {path: 'vehiculo', component: VehiculoComponent, children: [
-    {path: 'agregarvehiculo', component: AgregarVehiculoComponent },
-    {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent}
-  ]
+    {path: 'agregarvehiculo', component: AgregarVehiculoComponent, canActivate: [GuardianService] },
+    {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent, canActivate: [GuardianService]}
+  ], canActivate: [GuardianService]
   },
+  {path: 'conductor', component: ConductorComponent, canActivate: [GuardianService],
+  children: [
+    {path: 'agregar', component: AgregarConductorComponent }
+  ],
+  },
+  //Pagina no encontro
+  {path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService]},
+  {path: 'login', component: LoginComponent},
   {path: 'error', component: NotOkComponent},
   {path: 'nopermiso', component: NotAllowedComponent},
-  {path: 'login', component: LoginComponent},
   {path: '**', component: NotFoundComponent}
 ];
 @NgModule({
