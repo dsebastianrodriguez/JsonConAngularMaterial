@@ -1,0 +1,14 @@
+<div align="center">
+  <p>¿Desea eliminar el conductor?</p>
+</div>
+<p>Nombre: {{ data.nombre }} {{data.apellido}} </p>
+
+<div class="botones">
+  <button mat-raised-button class="cerrar" style="float: right" color="primary" (click)="eliminarConductor(data.idUsuario)">
+    Eliminar
+  </button>
+
+  <button mat-raised-button class="cerrar" style="float: right" color="primary" (click)="cerrarDialogo()">
+    Cancelar
+  </button>  
+</div>

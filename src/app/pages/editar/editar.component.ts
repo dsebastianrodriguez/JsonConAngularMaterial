@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 
 @Component({
   selector: 'app-editar',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private barraDeProgresoService: BarraDeProgresoService) { 
+    this.barraDeProgresoService.progressBarReactiva.next(false);
+    this.barraDeProgresoService.progressBarReactiva.next(true);
+  }
 
   ngOnInit(): void {
   }

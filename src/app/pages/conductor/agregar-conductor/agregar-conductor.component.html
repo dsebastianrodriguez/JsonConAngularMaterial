@@ -94,8 +94,16 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Departamento</mat-label>
-          <mat-select [(value)]="idDepartamento" (selectionChange)="idDepar($event.value)">
-            <mat-option [value]="departamento.idDepartamento" *ngFor="let departamento of dataSource">{{ departamento.nombre }}</mat-option>
+          <mat-select formControlName="departamento"
+            [(value)]="idDepartamento"
+            (selectionChange)="idDepar($event.value)"
+          >
+            <mat-option 
+              [value]="departamento.idDepartamento"
+              *ngFor="let departamento of dataSource"
+            >
+              {{ departamento.nombre }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
       </td>
@@ -120,11 +128,11 @@
     </tr>
   </table>
 
-  <button mat-fab  color="primary" type="submit" [disabled]="formConductor.invalid">
+  <button mat-fab  color="primary" style="float: right" matTooltip="Guardar conductor" type="submit" [disabled]="formConductor.invalid">
     <mat-icon>person_add</mat-icon>
   </button>
 
-  <button mat-fab color="primary" style="float: right" [routerLink]="['/conductor']">
+  <button mat-fab color="primary" style="float: right" matTooltip="Cancelar" [routerLink]="['/conductor']">
     <mat-icon>cancel</mat-icon>
   </button>
 </form>

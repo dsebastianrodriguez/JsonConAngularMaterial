@@ -39,44 +39,35 @@ export class AppComponent implements OnInit {
     private snackBar: MatSnackBar,
   ) {
 
-
-    // sets an idle timeout of 5 seconds, for testing purposes.
-    idle.setIdle(5);
-    // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
+    idle.setIdle(5000);
     idle.setTimeout(15);
-    // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
     idle.onIdleEnd.subscribe(() => {
-      this.idleState = 'La sesion ya no está inactiva.'
+      this.idleState = 'sesion no cerrada.'
       console.log(this.idleState);
       this.reset();
     });
 
     idle.onTimeout.subscribe(() => {
-
-      this.idleState = 'Desconectado!';
+      this.idleState = 'Inactividad completa';
       this.timedOut = true;
       console.log(this.idleState);
       this.router.navigate(['']);
-      this.openSnackBar('Sesion terminada  por favor haga el login nuevamente.');
+      this.openSnackBar('Sesion terminada  por favor ingrese nuevamente.');
       this.logService.cerrarSesion();
     });
 
-    console.log('entro aca');
-
     idle.onIdleStart.subscribe(() => {
-      this.idleState = 'Tu\'estado es inactivo!'
+      this.idleState = 'Tu estado es inactivo!'
       console.log(this.idleState);
 
-      // this.childModal.show();
     });
 
     idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleState = 'Te detendrás en:' + countdown + ':Segundos!'
+      this.idleState = 'Sesion cerrara en:' + countdown + ': Segundos!'
       console.log(this.idleState);
     });
 
-    // sets the ping interval to 15 seconds
     Keepalive.interval(15);
 
     Keepalive.onPing.subscribe(() => this.lastPing = new Date());
@@ -91,8 +82,6 @@ export class AppComponent implements OnInit {
 
       }
     });
-
-    // this.reset();
   }
   reset() {
 
@@ -124,23 +113,17 @@ export class AppComponent implements OnInit {
       const helper = new JwtHelperService();
       let token = sessionStorage.getItem(environment.TOKEN);
 
-      // console.log('token:=' + token);
       if (!helper.isTokenExpired(token)) {
         const decodedToken = helper.decodeToken(token);
         const rol: string = decodedToken.authorities[0];
 
-        // console.log(rol);
         if (rol == 'Conductor') {
           this.flagadmin = true;
           this.flaguser = false;
-          // console.log('hola' + rol);
         } else {
           this.flagadmin = false;
           this.flaguser = true;
-          // console.log('chao' + rol);
         }
-      } else {
-        // console.log('no hay token');
       }
 
     });

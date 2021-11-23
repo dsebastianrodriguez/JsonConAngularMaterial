@@ -26,9 +26,6 @@ export class AgregarVehiculoComponent implements OnInit {
     capacidad: ['', Validators.required],
   });
 
- 
-  
-
   constructor(private serviceAgregarVehiculo: VehiculoService,
               private router: Router,
               private fb: FormBuilder,

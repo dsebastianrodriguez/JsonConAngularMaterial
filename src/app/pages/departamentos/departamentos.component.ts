@@ -18,8 +18,6 @@ export class DepartamentosComponent implements OnInit {
   dataSource = new MatTableDataSource<Departamento>();
   
   @ViewChild('DepartmentPaginator') paginator: MatPaginator;
-
-  //para el ordenamiento
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private DepartamentosService: DepartamentosService,

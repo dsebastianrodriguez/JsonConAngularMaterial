@@ -1,5 +1,4 @@
 <div class="container">
-    <!--[hidden]="route.children.length !== 0"-->
     <div [hidden]="route.children.length !== 0">
       <br />
   
@@ -69,38 +68,22 @@
         </ng-container>
   
         <ng-container matColumnDef="correo">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Correo
-          </mat-header-cell>
-          <mat-cell *matCellDef="let conductor">
-            {{ conductor.correo }}
-          </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
+          <mat-cell *matCellDef="let conductor">{{ conductor.correo }}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="ciudad">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Ciudad
-          </mat-header-cell>
-          <mat-cell *matCellDef="let conductor">
-            {{ conductor.ciudad.nombre }}
-          </mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Ciudad</mat-header-cell>
+          <mat-cell *matCellDef="let conductor">{{ conductor.ciudad.nombre }}</mat-cell>
         </ng-container>
   
-        <ng-container matColumnDef="acciones">
-          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <ng-container matColumnDef="opciones">
+          <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
           <mat-cell *matCellDef="let conductor">
-            <button
-              mat-button
-              color="primary"
-              [routerLink]="['/conductor/editarconductor', conductor.idUsuario]"
-            >
+            <button mat-button color="primary" class="pointer" matTooltip="Editar conductor" [routerLink]="['/conductor/editarconductor', conductor.idUsuario]">
               <mat-icon>edit</mat-icon>
             </button>
-            <button
-              mat-stroked-button
-              color="primary"
-              (click)="eliminarConductor(conductor.idUsuario)"
-            >
+            <button mat-stroked-button color="primary" class="pointer" matTooltip="Eliminar conductor" (click)="abrirDialogo(conductor)" >
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>
@@ -120,13 +103,7 @@
   
       <br />
   
-      <button
-        mat-stroked-button
-        color="primary"
-        class="agregar"
-        style="float: right"
-        routerLink="/conductor/agregar"
-      >
+      <button mat-stroked-button color="primary" class="agregar" matTooltip="Agregar conductor" style="float: right" routerLink="/conductor/agregar">
         <span></span>
         <mat-icon>person_add</mat-icon>
       </button>

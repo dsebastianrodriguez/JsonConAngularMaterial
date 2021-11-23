@@ -1,8 +1,8 @@
-.tabla {
-    width: 80%;
-    padding: 4% 10% 10% 10%;
-}
-
-table {
+.container {
+    width: 70%;
+    margin: 2% 5% 5% 5%;
+  }
+  
+  table {
     width: 100%;
-}
+  }

@@ -58,11 +58,11 @@
         </tr>
       </table>
     
-        <button mat-fab color="primary" style="float: right" type="submit" [disabled]="formVehiculo.invalid">
+        <button mat-fab color="primary" style="float: right" matTooltip="Guardar vehiculo" type="submit" [disabled]="formVehiculo.invalid">
           <mat-icon>save_alt</mat-icon>
         </button>
     
-        <button mat-fab color="primary" style="float: right" [routerLink]="['/vehiculo']">
+        <button mat-fab color="primary" style="float: right" matTooltip="Cancelar" [routerLink]="['/vehiculo']">
           <mat-icon>cancel</mat-icon>
         </button>
 </form>

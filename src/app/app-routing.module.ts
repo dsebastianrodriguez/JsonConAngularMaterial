@@ -18,7 +18,7 @@ import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/a
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'buscar', component: BuscarComponent},
+  {path: 'inicio', component: BuscarComponent},
   {path: 'editar', component: EditarComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'departamentos', component: DepartamentosComponent, children :[
@@ -32,10 +32,11 @@ const routes: Routes = [
   },
   {path: 'conductor', component: ConductorComponent, canActivate: [GuardianService],
   children: [
-    {path: 'agregar', component: AgregarConductorComponent }
+    {path: 'agregar', component: AgregarConductorComponent },
+    {path: 'editarconductor/:id', component: AgregarConductorComponent}
   ],
   },
-  //Pagina no encontro
+
   {path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService]},
   {path: 'login', component: LoginComponent},
   {path: 'error', component: NotOkComponent},
